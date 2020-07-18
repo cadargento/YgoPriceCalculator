@@ -1,5 +1,7 @@
-#Gradle
-.gradle/*
+#General Project ignores
+.gradle/
+.idea/
+build/
 
 # Compiled class file
 *.class
