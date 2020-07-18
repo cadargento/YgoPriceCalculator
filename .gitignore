@@ -1,7 +1,8 @@
 #General Project ignores
 .gradle/
-.idea/
 build/
+*.iws
+.idea/workspace.xml
 
 # Compiled class file
 *.class
