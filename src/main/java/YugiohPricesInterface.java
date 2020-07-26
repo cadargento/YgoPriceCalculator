@@ -10,7 +10,7 @@ import java.util.*;
 public class YugiohPricesInterface
 {
     private static String apiHomeUrlString = "https://db.ygoprodeck.com/";
-    private static String apiUrlFileString = "/api/v6/cardinfo.php";
+    private static String apiUrlFileString = "/api/v7/cardinfo.php";
 
     public static Card CardData(String cardId) {
 
@@ -101,8 +101,6 @@ public class YugiohPricesInterface
     public static void main(String [] args)
     {
         Card c3 = CardData("83994646");
-        //Card c1 = CardData("Blue-Eyes%20White%20Dragon");
-        //Card c2 = CardData("Blue-Eyes White Dragon");
 
         System.out.println(apiHomeUrlString);
 

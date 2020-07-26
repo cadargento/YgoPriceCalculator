@@ -67,7 +67,8 @@ public class Deck {
     }
 
     public static void main(String[] args) {
-        Deck d = new Deck("/home/windows/Projects/YgoPriceCalculator/src/main/java/JoeyDeck.ydk");
+        Deck d = new Deck("/home/giuce/Projects/YgoPriceCalculator/src/main/java/JoeyDeck.ydk");
+
         System.out.println("Done.");
     }
 }

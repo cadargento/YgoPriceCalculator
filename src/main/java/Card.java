@@ -66,6 +66,7 @@ public class Card {
 
 
     public static void main(String[] args) {
+        Card c = YugiohPricesInterface.CardData("83994646");
 
     }
 
