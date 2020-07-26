@@ -5,7 +5,8 @@ build/
 .idea/workspace.xml
 .idea/usage.statistics.xml
 .idea/tasks.xml
-.idea/*.xml
+.idea/misc.xml
+.idea/compiler.xml
 .idea/shelf
 .idea/libraries
 

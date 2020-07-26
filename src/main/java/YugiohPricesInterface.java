@@ -86,7 +86,7 @@ public class YugiohPricesInterface
             }
         }
         if (!responseString.equals("")) {
-            return new JsonParser().parse(responseString);
+            return JsonParser.parseString(responseString);
             // return ConvertStringToJson(responseString.toString());
         }
         return null;
@@ -94,7 +94,7 @@ public class YugiohPricesInterface
     }
 
     public static JsonElement ConvertStringToJson(String responseString) {
-        JsonElement responseJson = new JsonParser().parse(responseString);
+        JsonElement responseJson = JsonParser.parseString(responseString);
         return responseJson;
     }
 
