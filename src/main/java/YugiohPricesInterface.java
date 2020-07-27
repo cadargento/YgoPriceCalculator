@@ -15,6 +15,7 @@ public class YugiohPricesInterface
     public static Card CardData(String cardId) {
 
         Map<String, String> cardInfoMap = new HashMap<>();
+        Map<String, JsonArray> cardJArrMap = new HashMap<>();
         JsonArray jArr = null;
         JsonObject jObj = null;
         JsonElement jsonTree = null;
@@ -22,19 +23,27 @@ public class YugiohPricesInterface
         jsonTree = GetRequest("?id=" + cardId);
 
         assert jsonTree != null;
-        if (jsonTree.isJsonArray()) {
-            jArr = jsonTree.getAsJsonArray();
+        jArr = (JsonArray) jsonTree.getAsJsonObject().get("data");
+
+        if (jArr.size() <= 1) {
             jObj = jArr.get(0).getAsJsonObject();
         } else{
-            jObj = jsonTree.getAsJsonObject();
+            // BOZO -- need to implement for when multiple cards are part of the response.
+            jObj = jArr.get(0).getAsJsonObject();
         }
 
         try {
             JsonObject data = jObj;
             for (String field: Card.cardFields) {
                 if ((data.has(field))) {
-                    String cardField = data.get(field).getAsString();
-                    cardInfoMap.put(field, cardField);
+                    if (data.get(field).isJsonPrimitive()) {
+                        String cardField = data.get(field).getAsString();
+                        cardInfoMap.put(field, cardField);
+                    }
+                    else if (data.get(field).isJsonArray()) {
+                        JsonArray dataArr = data.get(field).getAsJsonArray();
+                        cardJArrMap.put(field, dataArr);
+                    }
                 }
                 else {
                     cardInfoMap.put(field, null);
@@ -45,9 +54,13 @@ public class YugiohPricesInterface
             e.printStackTrace();
         }
 
-        if (cardInfoMap.size() > 0) {
+        if (cardInfoMap.size() > 0 || cardJArrMap.size() > 0) {
+            if (cardJArrMap.size() > 0) {
+                return new Card(cardInfoMap, cardJArrMap);
+            }
             return new Card(cardInfoMap);
         }
+
         return null;
 
     }

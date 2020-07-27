@@ -1,10 +1,12 @@
+import com.google.gson.JsonArray;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 
 public class Card {
     public static ArrayList<String> cardFields = new ArrayList<>(Arrays.asList(
-            "name", "type", "desc", "atk", "def", "level", "race", "attribute"));
+            "name", "type", "desc", "atk", "def", "level", "race", "attribute", "card_sets", "card_images", "card_prices"));
 
     private String name;
     private String type;
@@ -47,7 +49,17 @@ public class Card {
         this.level = cardInfoMap.get("level");
         this.race = cardInfoMap.get("race");
         this.attribute = cardInfoMap.get("attribute");
+    }
 
+    public Card (Map<String, String> cardInfoMap, Map<String, JsonArray> cardJArrMap) {
+        this.name = cardInfoMap.get("name");
+        this.type = cardInfoMap.get("type");
+        this.desc = cardInfoMap.get("desc");
+        this.atk = cardInfoMap.get("atk");
+        this.def = cardInfoMap.get("def");
+        this.level = cardInfoMap.get("level");
+        this.race = cardInfoMap.get("race");
+        this.attribute = cardInfoMap.get("attribute");
     }
 
     public static class CardBuilder
